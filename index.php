@@ -105,7 +105,7 @@ if($result = mysqli_query($conn, $query))
   </section>
 
 
-
+<!-- Footer  -->
   <?php include "partials/_footer.php";
   ?>
 </body>
