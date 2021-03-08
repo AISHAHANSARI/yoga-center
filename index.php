@@ -1,4 +1,7 @@
 <?php include "partials/_dbconnect.php";
+
+session_start();
+
 ?>
 
 <!doctype html>

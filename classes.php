@@ -1,4 +1,5 @@
 <?php
+session_start();
 $showAlert = false;
 include "partials/_dbconnect.php";
 if($_SERVER['REQUEST_METHOD'] == "POST"){

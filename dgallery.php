@@ -1,4 +1,7 @@
 <?php
+
+session_start();
+
 require_once 'DB.class.php';
 $db = new DB();
 

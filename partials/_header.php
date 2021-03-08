@@ -1,3 +1,36 @@
+<?php
+
+include "partials/_dbconnect.php";
+if($_SERVER['REQUEST_METHOD'] == "POST"){
+  if (isset ($_POST['signin-submit'])){
+    if((isset($_POST['email']) && !empty($_POST['email'])) && (isset($_POST['password']) && !empty($_POST['password']))){
+
+      $email = mysqli_real_escape_string($conn, $_POST['email']);
+      $password = mysqli_real_escape_string($conn, $_POST['password']);
+      $query = "select * from member where email='$email' and password = '$password'";
+      
+      $result = mysqli_query($conn,$query);
+      $row = mysqli_fetch_array($result);
+      $num = mysqli_num_rows($result);
+      if($num ==1){
+        session_start();
+        $_SESSION['user'] = $email;
+        $_SESSION['name'] = $row['name'];
+        $_SESSION['LoggedIn'] = true;
+
+        header("location: classes.php");
+
+      }
+
+
+    }
+  }
+}
+
+?>
+
+
+
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <link rel="stylesheet" href="css/style.css">
@@ -81,7 +114,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" name ="signin-submit" class="btn btn-primary">Sign In</button>
       </div>
   </form>
     </div>
