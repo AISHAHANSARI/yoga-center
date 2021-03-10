@@ -33,11 +33,51 @@ if ($result){
         require 'partials/_header.php';
         ?>
 
-  <section class="container my-3">
+  <!-- Session Booking  -->
+
+  <section class="container my-5 d-flex justify-content-center">
+    <div class="row">
+
+      <div class="col-lg-6">
+        <div class="card" style="width: 25rem;">
+          <img src="img/pose.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-center"><b>6 DAYS IN A WEEK</b></h5>
+            <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
+              Time: 9:00 AM to 12:00 noon</p>
+          </div>
+
+          <div class="card-body text-center">
+            <a href="#" class="card-link ">Book Now!</a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6 ">
+        <div class="card" style="width: 25rem;">
+          <img src="img/pose2.jpg" class="card-img-top" alt="...">
+
+          <div class="card-body">
+            <h5 class="card-title text-center"><b>3 DAYS IN A WEEK</b></h5>
+            <p class="card-text text-center">Mon-Wed-Fri<br>
+              Time: 9:00 AM to 12:00 noon</p>
+          </div>
+          <div class="card-body text-center">
+            <a href="#" class="card-link r">Book Now!</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Review Section  -->
+  <section class="container my-5">
     <div class="row">
       <div class="col-6">
-      <div id="sent">
-        <?php
+        <div id="sent">
+          <?php
         if($showAlert){
           echo ' <div class="alert alert-success" role="alert">
           Thanks For Your Review!

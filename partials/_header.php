@@ -2,6 +2,12 @@
 
 include "partials/_dbconnect.php";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
+
+  if (isset ($_POST['btn-logout'])){
+    session_unset();
+  session_destroy();
+  }
+  
   if (isset ($_POST['signin-submit'])){
     if((isset($_POST['email']) && !empty($_POST['email'])) && (isset($_POST['password']) && !empty($_POST['password']))){
 
@@ -24,6 +30,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
 
 
     }
+  }
+}
+
+if($_SERVER['REQUEST_METHOD'] == "GET"){
+  if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
+    echo '<script></script>';
   }
 }
 
@@ -50,26 +62,36 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link active" aria-current="page" href="index.php">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Classes</a>
+          <a class="nav-link active" aria-current="page" href="classes.php">Classes</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Gallery</a>
+          <a class="nav-link active" aria-current="page" href="dgallery.php">Gallery</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="contact.php">Contact Us</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">About Us</a>
+          <a class="nav-link active" aria-current="page" href="about.php">About Us</a>
         </li>
         </ul>
         <ul class="navbar-nav navbar-right me-md-3">
         <li>
-        <!-- <form class="d-flex ">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
-        <button type="button" data-bs-target="#exampleModal" data-bs-toggle="modal" class="btn btn-md btn-success px-5">Sign In</button>
+         
+          <!-- <button type="button" data-bs-target="#exampleModal" data-bs-toggle="modal" class="btn btn-md btn-success px-5">Sign In</button> -->
+          <!-- <form method="GET"> -->
+            <?php
+             if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
+               echo '<button type="button" class="btn btn-md btn-success px-5" data-bs-toggle="modal" data-bs-target="#loggedInModal">
+               Sign In
+             </button>';
+             }else
+            {
+              echo '<button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-md btn-success px-5">Sign In</button>';
+            }
+        ?>
       <!-- </form> -->
         </li>
         </ul>
@@ -117,6 +139,42 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         <button type="submit" name ="signin-submit" class="btn btn-primary">Sign In</button>
       </div>
   </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="loggedInModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <h3>You are Already Logged In</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+
+
+        <form>
+        <button type="submit" name="btn-logout" class="btn btn-primary">Sign Out</button>
+        </form>
+
+
+      </div>
     </div>
   </div>
 </div>
