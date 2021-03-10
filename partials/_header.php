@@ -169,7 +169,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
 
 
 
-        <form>
+        <form  method="POST">
         <button type="submit" name="btn-logout" class="btn btn-primary">Sign Out</button>
         </form>
 
