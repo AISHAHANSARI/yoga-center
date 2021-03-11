@@ -85,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
             <?php
              if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
                echo '<button type="button" class="btn btn-md btn-success px-5" data-bs-toggle="modal" data-bs-target="#loggedInModal">
-               Sign In
+               Sign Out
              </button>';
              }else
             {
