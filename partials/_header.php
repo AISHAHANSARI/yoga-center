@@ -162,7 +162,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <h3>You are Already Logged In</h3>
+       <!-- <h3>You are Already Logged In</h3> -->
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -172,7 +172,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
         <form  method="POST">
         <button type="submit" name="btn-logout" class="btn btn-primary">Sign Out</button>
         </form>
-
+ 
 
       </div>
     </div>
