@@ -1,5 +1,7 @@
 <?php
 session_start();
+$membername = $_SESSION['name'];
+$memberemail = $_SESSION['user'];
 $showAlert = false;
 include "partials/_dbconnect.php";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -33,27 +35,46 @@ if ($result){
         require 'partials/_header.php';
         ?>
 
-  <!-- Session Booking  -->
+<section class="container my-5 position-relative">
+  <div class="row">
+    <div class="quotes col-6">
 
-  <section class="container my-5 d-flex justify-content-center">
-    <div class="row">
+      <h3>Lorem, ipsum.</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam placeat iure corporis neque ducimus vero voluptatibus quas sint, praesentium consectetur, quos alias aperiam facere odit?</p>
+    </div>
 
-      <div class="col-lg-6">
-        <div class="card" style="width: 25rem;">
-          <img src="img/pose.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-center"><b>6 DAYS IN A WEEK</b></h5>
-            <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
-              Time: 9:00 AM to 12:00 noon</p>
-          </div>
+    
+    <div class="col-md-4 end-0 container position-relative  my-3 px-5 float-right">
+      <div class="card" style="width: 25rem;">
+        <!-- <img src="img/pose2.jpg" class="card-img-top" alt="..."> -->
 
-          <div class="card-body text-center">
-            <a href="#" class="card-link ">Book Now!</a>
-          </div>
+        <div class="card-body">
+          <h5 class="card-title"><b>You're Logged In as</b>
+           </h5>
+          <p class="card-title"><b>Name : </b>  <?php echo $membername; ?>
+          </p>
+          
+          <p class="card-text"><b>Email : </b>
+            <?php echo $memberemail; ?></p>
+      
+        </div>
+        <div class="text-center mb-3">
+          <button class="btn btn-primary">Sign Out</button>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+  <!-- Session Booking  -->
+
+  <section class="container mt-5 text-center">
+    <div class="d-flex justify-content-center">
+    <div class="row text-center ">
+
       
-      <div class="col-lg-6 ">
+
+      <div class="col-lg-6 text-center my-3 px-5">
         <div class="card" style="width: 25rem;">
           <img src="img/pose2.jpg" class="card-img-top" alt="...">
 
@@ -61,14 +82,39 @@ if ($result){
             <h5 class="card-title text-center"><b>3 DAYS IN A WEEK</b></h5>
             <p class="card-text text-center">Mon-Wed-Fri<br>
               Time: 9:00 AM to 12:00 noon</p>
-          </div>
-          <div class="card-body text-center">
-            <a href="#" class="card-link r">Book Now!</a>
+        
+         
+            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking1" value="2500" checked>
+            <label class="form-check-label" for="sessionBooking1">
+              <b>₹ : 2500.00</b>
+            </label>
           </div>
         </div>
 
       </div>
+
+      <div class="col-lg-6 text-center my-3 px-5">
+        <div class="card" style="width: 25rem;">
+          <img src="img/pose.jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title text-center"><b>6 DAYS IN A WEEK</b></h5>
+            <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
+              Time: 9:00 AM to 12:00 noon</p>
+
+            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking2" value="2500">
+            <label class="form-check-label" for="sessionBooking2">
+              <b>₹ : 4000.00</b>
+            </label>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <form action="" method="post">
+
+    <button type="submit" class=" my-3 p-2 col-3 btn btn-primary">Book Now</button>
+  </form>
+
   </section>
 
 
