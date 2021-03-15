@@ -45,16 +45,16 @@ if($isValidChecksum == "TRUE") {
 		$BANKNAME = $_POST['BANKNAME'];
 		$CHECKSUMHASH = $_POST['CHECKSUMHASH'];
 
-		echo $MID;
+		
 
 		if ($memtype == 'sessionBooking1'){
 
 			$expiry = date("Y-m-d", strtotime("+1 Months"));
-			echo $expiry."\n";
+			
 
-			$query1 = "INSERT INTO `sessionbooking` (`name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ($memname, $memphone, $mememail, $TXNAMOUNT, 'current_timestamp()', $expiry, '1', '0', '1', 'online')";
+			$query1 = "INSERT INTO `sessionbooking` (`name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$memname', '$memphone', '$mememail', '$TXNAMOUNT', current_timestamp(), '$expiry', '1', '0', '1', 'online')";
 
-			$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ($memname, $mememail, $memphone, $ORDERID, $MID, $TXNID, $TXNAMOUNT, $PAYMENTMODE, $CURRENCY, current_timestamp(), $STATUS, $RESPMSG, $GATEWAYNAME, $BANKTXNID, $BANKNAME)";
+			$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ('$memname', '$mememail', '$memphone', '$ORDERID', '$MID', '$TXNID', '$TXNAMOUNT', '$PAYMENTMODE', '$CURRENCY', current_timestamp(), '$STATUS', '$RESPMSG', '$GATEWAYNAME', '$BANKTXNID', '$BANKNAME')";
 
 			mysqli_query($conn, $query1);
 			mysqli_query($conn, $query2);
@@ -62,9 +62,9 @@ if($isValidChecksum == "TRUE") {
 		}elseif ($memtype == 'sessionBooking2'){
 			$expiry = date("Y-m-d", strtotime("+1 Months"));
 
-			$query1 = "INSERT INTO `sessionbooking` (`name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ($memname, $memphone, $mememail, $TXNAMOUNT, 'current_timestamp()', $expiry, '0', '1', '1', 'online')";
+			$query1 = "INSERT INTO `sessionbooking` (`name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$memname', '$memphone', '$mememail', '$TXNAMOUNT', current_timestamp(), '$expiry', '0', '1', '1', 'online')";
 
-			$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ($memname, $mememail, $memphone, $ORDERID, $MID, $TXNID, $TXNAMOUNT, $PAYMENTMODE, $CURRENCY, current_timestamp(), $STATUS, $RESPMSG, $GATEWAYNAME, $BANKTXNID, $BANKNAME)";
+			$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ('$memname', '$mememail', '$memphone', '$ORDERID', '$MID', '$TXNID', '$TXNAMOUNT', '$PAYMENTMODE', '$CURRENCY', current_timestamp(), '$STATUS', '$RESPMSG', '$GATEWAYNAME', '$BANKTXNID', '$BANKNAME')";
 
 			mysqli_query($conn, $query1);
 			mysqli_query($conn, $query2);
@@ -107,8 +107,6 @@ if($isValidChecksum == "TRUE") {
 
 	if (isset($_POST) && count($_POST)>0 )
 	{ 
-		$dummy = $_POST['ORDERID'];
-		echo "$dummy";
 		foreach($_POST as $paramName => $paramValue) {
 				echo "<br/>" . $paramName . " = " . $paramValue;
 
