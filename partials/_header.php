@@ -22,7 +22,9 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         session_start();
         $_SESSION['user'] = $email;
         $_SESSION['name'] = $row['name'];
+        $_SESSION['phone'] = $row['phone_no'];
         $_SESSION['LoggedIn'] = true;
+
 
         header("location: classes.php");
 
@@ -84,7 +86,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
           <!-- <form method="GET"> -->
             <?php
              if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
-               echo '<button type="button" class="btn btn-md btn-success px-5" data-bs-toggle="modal" data-bs-target="#loggedInModal">
+               echo '<button type="button" class="btn btn-md btn-primary px-5" data-bs-toggle="modal" data-bs-target="#loggedInModal">
                Sign Out
              </button>';
              }else
@@ -136,7 +138,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" name ="signin-submit" class="btn btn-primary">Sign In</button>
+        <button type="submit" name ="signin-submit" class="btn btn-success">Sign In</button>
       </div>
   </form>
     </div>
@@ -158,11 +160,11 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel"></h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-       <!-- <h3>You are Already Logged In</h3> -->
+       <h3>Are You Sure Want to Sign Out ?</h3>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -1,5 +1,26 @@
 <?php 
-session_start();
+
+// INSERT INTO `contact1` (`sr_no`, `name`, `email`, `phone_no`, `msg`, `date`) VALUES ('1', 'shadab', 'shadab@gmail.com', '998765409', 'gfwtdfgcdghadgacd', current_timestamp());
+
+
+
+  $showAlert = false;
+  include "partials/_dbconnect.php";
+  if($_SERVER['REQUEST_METHOD'] == "POST"){
+    if(isset($_POST['msg-submit']) ){
+      if((isset($_POST['name']) && !empty($_POST['name'])) && (isset($_POST['email']) && !empty($_POST['email'])) && (isset($_POST['phone_no']) && !empty($_POST['phone_no'])) && (isset($_POST['msg']) && !empty($_POST['msg'])))
+    {
+    $name = mysqli_real_escape_string($conn, $_POST['name']);
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $phone = mysqli_real_escape_string($conn, $_POST['phone_no']);
+    $message = mysqli_real_escape_string($conn, $_POST['msg']);
+  
+  $msgquery = "INSERT INTO `contact` (`name`, `email`, `phone_no`, `msg`, `date`) VALUES ('$name', '$email', '$phone', '$message', current_timestamp())";
+  $result = mysqli_query($conn, $msgquery);
+  if ($result){
+    $showAlert=true;
+  }
+    }}}
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +29,7 @@ session_start();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Antara Yoga Center | Contact Us</title>
 </head>
 
 <body>
@@ -23,7 +44,15 @@ session_start();
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7505567443413!2d72.83201304966998!3d19.074701856908614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c90e6740a08b%3A0x17eb1ecd5461f9d3!2sLinking%20Rd%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1614612516663!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
     <div class="col-6">
-      <form>
+    <!-- <div id="sent"> -->
+          <?php
+        if($showAlert){
+          echo ' <div class="alert alert-success" role="alert">
+          Thanks For Your Review!
+          </div> '; 
+        }
+        ?>
+      <form method = "POST">
         <h1> Connect With Us </h1>
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
@@ -42,7 +71,7 @@ session_start();
       <label for="msg" class="form-label">Ask Your Questions!</label>
       <textarea cols="3" rows="4" class="form-control" id="msg" name="msg"></textarea>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" name = "msg-submit" class="btn btn-primary">Submit</button>
   </form>
   
 </div>

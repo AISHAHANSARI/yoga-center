@@ -1,7 +1,13 @@
 <?php
 session_start();
+
+$membername = "None, Please Sign In!";
+$memberemail = "None, Please Sign In!";
+if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
+
 $membername = $_SESSION['name'];
 $memberemail = $_SESSION['user'];
+}
 $showAlert = false;
 include "partials/_dbconnect.php";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
@@ -48,8 +54,8 @@ if ($result){
       <div class="card" style="width: 25rem;">
         <!-- <img src="img/pose2.jpg" class="card-img-top" alt="..."> -->
 
-        <div class="card-body">
-          <h5 class="card-title"><b>You're Logged In as</b>
+        <div class="card-body text-center">
+          <h5 class="card-title"><b>You're Logged In as:</b>
            </h5>
           <p class="card-title"><b>Name : </b>  <?php echo $membername; ?>
           </p>
@@ -58,9 +64,9 @@ if ($result){
             <?php echo $memberemail; ?></p>
       
         </div>
-        <div class="text-center mb-3">
+        <!-- <div class="text-center mb-3">
           <button class="btn btn-primary">Sign Out</button>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
@@ -83,10 +89,10 @@ if ($result){
             <p class="card-text text-center">Mon-Wed-Fri<br>
               Time: 9:00 AM to 12:00 noon</p>
         
-         
-            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking1" value="2500" checked>
+              <form action="payment.php" method="post">
+            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking1" value="1500" checked>
             <label class="form-check-label" for="sessionBooking1">
-              <b>₹ : 2500.00</b>
+              <b>₹ : 1500.00</b>
             </label>
           </div>
         </div>
@@ -100,19 +106,31 @@ if ($result){
             <h5 class="card-title text-center"><b>6 DAYS IN A WEEK</b></h5>
             <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
               Time: 9:00 AM to 12:00 noon</p>
-
+            
             <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking2" value="2500">
             <label class="form-check-label" for="sessionBooking2">
-              <b>₹ : 4000.00</b>
+              <b>₹ : 2500.00</b>
             </label>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <form action="" method="post">
+  
 
-    <button type="submit" class=" my-3 p-2 col-3 btn btn-primary">Book Now</button>
+    
+
+
+    <?php
+             if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
+
+              
+               echo '<button type="submit" name ="book-submit" class=" my-3 p-2 col-3 btn btn-primary">Book Now</button>';
+             }else
+            {
+              echo '<button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="my-3 p-2 col-3 btn btn-primary">Book Now</button>';
+            }
+        ?>
   </form>
 
   </section>
@@ -151,6 +169,8 @@ if ($result){
             <textarea cols="3" rows="4" class="form-control" id="msg" name="msg"></textarea>
           </div>
           <button type="submit" name="review-submit" class="btn btn-primary">Submit</button>
+
+          
         </form>
 
       </div>

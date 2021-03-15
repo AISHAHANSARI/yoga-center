@@ -47,13 +47,16 @@ session_start();
   <!-- Carousel End  -->
 
 
+  
+
+
   <!-- Review Carousel  -->
 <section class="review">
 <div class="container py-5">
   <div id="carouselreview" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner text-center">
 
-
+    
 
       <?php 
 
@@ -70,8 +73,9 @@ if($result = mysqli_query($conn, $query))
       if ($row['sr_no'] == 1){
         echo '<div class="carousel-item active">';
         
-        echo '<p class="d-block w-100">' . $row['name'] . "</p>";
-        echo '<p class="d-block w-100">' . $row['email'] . "</p>";
+        echo '<h4><p class="d-block w-100">' . $row['name'] . "</p></h4>";
+        
+        // echo '<p class="d-block w-100">' . $row['email'] . "</p>";
         echo '<p class="d-block w-100">' . $row['reviews'] . "</p>";
         
         echo '</div>';        
@@ -79,8 +83,8 @@ if($result = mysqli_query($conn, $query))
       if ($row['sr_no'] > 1){
         echo '<div class="carousel-item">';
         
-        echo '<p class="d-block w-100">' . $row['name'] . "</p>";
-        echo '<p class="d-block w-100">' . $row['email'] . "</p>";
+        echo '<h4><p class="d-block w-100">' . $row['name'] . "</p></h4>";
+        // echo '<p class="d-block w-100">' . $row['email'] . "</p>";
         echo '<p class="d-block w-100">' . $row['reviews'] . "</p>";
         
         echo '</div>';
