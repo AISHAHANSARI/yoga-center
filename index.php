@@ -17,8 +17,7 @@ session_start();
 
 <body>
   <?php include "partials/_header.php";
-  ?>
-
+ ?>
   <!-- carousel  -->
   <div id="carouselExampleControls" class="carousel slide home-carousel" data-bs-ride="carousel">
     <div class="carousel-inner">

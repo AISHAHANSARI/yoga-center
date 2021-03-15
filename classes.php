@@ -90,7 +90,7 @@ if ($result){
               Time: 9:00 AM to 12:00 noon</p>
         
               <form action="payment.php" method="post">
-            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking1" value="1500" checked>
+            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking1" value="sessionBooking1" checked>
             <label class="form-check-label" for="sessionBooking1">
               <b>₹ : 1500.00</b>
             </label>
@@ -107,7 +107,7 @@ if ($result){
             <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
               Time: 9:00 AM to 12:00 noon</p>
             
-            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking2" value="2500">
+            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking2" value="sessionBooking2">
             <label class="form-check-label" for="sessionBooking2">
               <b>₹ : 2500.00</b>
             </label>

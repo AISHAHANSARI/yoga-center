@@ -1,8 +1,17 @@
 <?php
 session_start();
+$_SESSION['sessType'] = $_POST['sessionBooking'];
 $mememail = $_SESSION['user'];
 
-$amount= $_POST['sessionBooking'];
+if ($_POST['sessionBooking'] == 'sessionBooking1')
+{
+	$amount= 1500;
+}
+elseif ($_POST['sessionBooking'] == 'sessionBooking2'){
+	$amount= 2500;
+}else{
+	$amount = 00;
+}
 // header("Pragma: no-cache");
 // header("Cache-Control: no-cache");
 // header("Expires: 0");
@@ -38,28 +47,26 @@ $amount= $_POST['sessionBooking'];
 				<input hidden id="ORDER_ID" tabindex="1" maxlength="20" size="20" name="ORDER_ID" autocomplete="off"
 					value="<?php echo  'ORDS' . rand(10000,99999999)?>">
 
-
-
-
-				<input hidden id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off"
+					
+					<input hidden id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off"
 					value="<?php echo $mememail; ?>"></td>
-
-
-				<div hidden class="form-group">
-					<label>INDUSTRY_TYPE_ID ::*</label>
-					<input id="INDUSTRY_TYPE_ID" class="form-control" tabindex="4" maxlength="12" size="12"
+					
+					
+					<div hidden class="form-group">
+						<label>INDUSTRY_TYPE_ID ::*</label>
+						<input id="INDUSTRY_TYPE_ID" class="form-control" tabindex="4" maxlength="12" size="12"
 						name="INDUSTRY_TYPE_ID" autocomplete="off" value="Retail"></td>
-				</div>
-
-				<div hidden class="form-group">
-					<label>Channel ()::*</label>
-					<input id="CHANNEL_ID" tabindex="4" class="form-control" maxlength="12" size="12" name="CHANNEL_ID"
+					</div>
+					
+					<div hidden class="form-group">
+						<label>Channel ()::*</label>
+						<input id="CHANNEL_ID" tabindex="4" class="form-control" maxlength="12" size="12" name="CHANNEL_ID"
 						autocomplete="off" value="WEB">
-				</div>
-
-				<div class="form-group col-4">
-					<label for="amountl">Session Fee *</label>
-					<div class="d-flex justify-content-center"> 
+					</div>
+					
+					<div class="form-group col-4">
+						<label for="amountl">Session Fee *</label>
+						<div class="d-flex justify-content-center"> 
 						<input title="TXN_AMOUNT" id="amount" class="form-control" tabindex="10" type="text" name="TXN_AMOUNT" value="<?php echo $amount; ?>" readonly>
 					</div>
 
