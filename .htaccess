@@ -1,0 +1,8 @@
+
+
+php_value session.cookie_patth "/"
+
+php_value session.cookie_domain "localhost"
+
+
+Header always edit Set-Cookie (.*) "$1; SameSite=None"

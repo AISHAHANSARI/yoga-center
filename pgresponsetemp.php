@@ -2,6 +2,10 @@
 // include 'partials/_header.php';
 
 session_start();
+$memname = $_SESSION['name'];
+$mememail = $_SESSION['user'];
+$memphone = $_SESSION['phone'];
+$memtype = $_SESSION['sessType'];
 
 
 // following files need to be included
@@ -45,75 +49,31 @@ if($isValidChecksum == "TRUE") {
 
 		
 
-		if (!isset($_SESSION['user']) && !isset($_SESSION['LoggedIn'])){
+		if ($memtype == 'sessionBooking1'){
 
-			$query = "select * from `sessionbooking` where o_id='$ORDERID'";
-      
-      $result = mysqli_query($conn,$query);
-      $row = mysqli_fetch_array($result);
-      $num = mysqli_num_rows($result);
-      if($num ==1){
-
-        
-        $_SESSION['user'] = $row['email'];
-        $_SESSION['name'] = $row['name'];
-        $_SESSION['phone'] = $row['phone_no'];
-        $_SESSION['LoggedIn'] = true;
-	  }
-
-			$mememail = $_SESSION['user'];
-			$memname = $_SESSION['name'];
-			$memphone = $_SESSION['phone'];
-
-			$query1 = "UPDATE `sessionbooking` SET `paystatus` = 'success' WHERE `sessionbooking`.`o_id` = '$ORDERID'";
-
-			$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ('$memname', '$mememail', '$memphone', '$ORDERID', '$MID', '$TXNID', '$TXNAMOUNT', '$PAYMENTMODE', '$CURRENCY', current_timestamp(), '$STATUS', '$RESPMSG', '$GATEWAYNAME', '$BANKTXNID', '$BANKNAME')";
+			$expiry = date("Y-m-d", strtotime("+1 Months"));
 			
-			mysqli_query($conn, $query1);
-			mysqli_query($conn, $query2);
 
-		}elseif(isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
-			$mememail = $_SESSION['user'];
-			$memname = $_SESSION['name'];
-			$memphone = $_SESSION['phone'];
-
-			$query1 = "UPDATE `sessionbooking` SET `paystatus` = 'success' WHERE `sessionbooking`.`o_id` = '$ORDERID'";
+			$query1 = "INSERT INTO `sessionbooking` (`name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$memname', '$memphone', '$mememail', '$TXNAMOUNT', current_timestamp(), '$expiry', '1', '0', '1', 'online')";
 
 			$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ('$memname', '$mememail', '$memphone', '$ORDERID', '$MID', '$TXNID', '$TXNAMOUNT', '$PAYMENTMODE', '$CURRENCY', current_timestamp(), '$STATUS', '$RESPMSG', '$GATEWAYNAME', '$BANKTXNID', '$BANKNAME')";
 
 			mysqli_query($conn, $query1);
 			mysqli_query($conn, $query2);
 
-		}else{
-			echo 'Error';
+		}elseif ($memtype == 'sessionBooking2'){
+			$expiry = date("Y-m-d", strtotime("+1 Months"));
+
+			$query1 = "INSERT INTO `sessionbooking` (`name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$memname', '$memphone', '$mememail', '$TXNAMOUNT', current_timestamp(), '$expiry', '0', '1', '1', 'online')";
+
+			$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ('$memname', '$mememail', '$memphone', '$ORDERID', '$MID', '$TXNID', '$TXNAMOUNT', '$PAYMENTMODE', '$CURRENCY', current_timestamp(), '$STATUS', '$RESPMSG', '$GATEWAYNAME', '$BANKTXNID', '$BANKNAME')";
+
+			mysqli_query($conn, $query1);
+			mysqli_query($conn, $query2);
 		}
-		
-
-		// if ($memtype == 'sessionBooking1'){
-
-		// 	$expiry = date("Y-m-d", strtotime("+1 Months"));
-			
-
-		// 	$query1 = "INSERT INTO `sessionbooking` (`name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$memname', '$memphone', '$mememail', '$TXNAMOUNT', current_timestamp(), '$expiry', '1', '0', '1', 'online')";
-
-		// 	$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ('$memname', '$mememail', '$memphone', '$ORDERID', '$MID', '$TXNID', '$TXNAMOUNT', '$PAYMENTMODE', '$CURRENCY', current_timestamp(), '$STATUS', '$RESPMSG', '$GATEWAYNAME', '$BANKTXNID', '$BANKNAME')";
-
-		// 	mysqli_query($conn, $query1);
-		// 	mysqli_query($conn, $query2);
-
-		// }elseif ($memtype == 'sessionBooking2'){
-		// 	$expiry = date("Y-m-d", strtotime("+1 Months"));
-
-		// 	$query1 = "INSERT INTO `sessionbooking` (`name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$memname', '$memphone', '$mememail', '$TXNAMOUNT', current_timestamp(), '$expiry', '0', '1', '1', 'online')";
-
-		// 	$query2 = "INSERT INTO `sessiontxn` (`name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ('$memname', '$mememail', '$memphone', '$ORDERID', '$MID', '$TXNID', '$TXNAMOUNT', '$PAYMENTMODE', '$CURRENCY', current_timestamp(), '$STATUS', '$RESPMSG', '$GATEWAYNAME', '$BANKTXNID', '$BANKNAME')";
-
-		// 	mysqli_query($conn, $query1);
-		// 	mysqli_query($conn, $query2);
-		// }
-		// else{
-		// 	echo ' Error';
-		// }
+		else{
+			echo ' Error';
+		}
 
 
 		// INSERT INTO `sessiontxn` (`sr_no`, `name`, `email`, `phone`, `orderid`, `mid`, `txnid`, `tamount`, `paymode`, `currency`, `tdate`, `status`, `respmsg`, `gatewayname`, `banktxnid`, `bankname`) VALUES ('', 'shadab', 'as@df.com', '9632587410', '1223', '213sdd', '22343', '13234', 'sadas', 'sdas', current_timestamp(), 'sd', 'sdas', 'sdas', '345345', 'dsfsd');
@@ -126,8 +86,6 @@ if($isValidChecksum == "TRUE") {
 		//Verify amount & order id received from Payment gateway with your application's order id and amount.
 	}
 	else {
-
-		$ORDERID = $_POST['ORDERID'];
 
 		if ($memtype == 'sessionBooking1'){
 		$expiry = date("Y-m-d", strtotime("+1 Months"));

@@ -19,6 +19,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       $row = mysqli_fetch_array($result);
       $num = mysqli_num_rows($result);
       if($num ==1){
+
+        
+         
+       
         session_start();
         $_SESSION['user'] = $email;
         $_SESSION['name'] = $row['name'];
