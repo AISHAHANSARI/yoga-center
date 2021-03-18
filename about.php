@@ -167,6 +167,7 @@ session_start();
 
   <!-- Paragraph Start -->
   <section class="container mt-5 intro-para">
+  <hr class="featurette-divider">
     <div>
       <h2 class = "text-center">Experienced Yoga Teachers </h2>
       <br>
@@ -180,7 +181,7 @@ session_start();
 
   <div class="container">
 
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mb-5">
         <div class="col">
           <div class="card shadow-sm">
           <img src="img/hot-yoga.jpg" alt=""
@@ -216,6 +217,7 @@ session_start();
           </div>
         </div>
 
+        </div>
         </div>
 
 

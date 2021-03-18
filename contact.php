@@ -48,7 +48,7 @@
           <?php
         if($showAlert){
           echo ' <div class="alert alert-success" role="alert">
-          Thanks For Your Review!
+          We Will Revert You Back Soon!
           </div> '; 
         }
         ?>

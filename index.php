@@ -71,6 +71,9 @@ if($result = mysqli_query($conn, $query))
       
       if ($row['sr_no'] == 1){
         echo '<div class="carousel-item active">';
+
+       echo  '<img src="img/Aishah_Ansari.jpg" alt=""
+          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="60" height="60">';
         
         echo '<h4><p class="d-block w-100">' . $row['name'] . "</p></h4>";
         
@@ -81,6 +84,9 @@ if($result = mysqli_query($conn, $query))
       }
       if ($row['sr_no'] > 1){
         echo '<div class="carousel-item">';
+
+        echo  '<img src="img/Aishah_Ansari.jpg" alt=""
+          class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="60" height="60">';
         
         echo '<h4><p class="d-block w-100">' . $row['name'] . "</p></h4>";
         // echo '<p class="d-block w-100">' . $row['email'] . "</p>";

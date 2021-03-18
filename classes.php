@@ -43,10 +43,10 @@ if ($result){
 
 <section class="container my-5 position-relative">
   <div class="row">
-    <div class="quotes col-6">
+    <div class="quotes col-6 my-5">
 
-      <h3>Lorem, ipsum.</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam placeat iure corporis neque ducimus vero voluptatibus quas sint, praesentium consectetur, quos alias aperiam facere odit?</p>
+  
+      <h4><p>“Yoga is a light, which once lit will never dim. The better your practice, the brighter your flame.”</p></h4>
     </div>
 
     
