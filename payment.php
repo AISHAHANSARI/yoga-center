@@ -48,52 +48,56 @@ elseif ($_POST['sessionBooking'] == 'sessionBooking2'){
         ?>
 	<pre>
 	</pre>
-	<section class="container">
-		<form method="post" action="pgRedirect.php">
-			<div class="container">
-				<div class="text-center">
-					<a class="text-center" href="index.php">
-						<img src="img/logo1.png" alt="Sampurn Kirtiman" height="150px">
-					</a>
-					<h2>Antara Yoga Center </h2>
-					<p class="lead">Your privacy and payment is our prior concern.</p>
+	<section class="container col-6">
+		<div class="text-center">
+			<a class="text-center" href="index.php">
+				<img src="img/logo1.png" alt="Sampurn Kirtiman" height="150px">
+			</a>
+			<h2>Antara Yoga Center </h2>
+			<p class="lead">Your privacy and payment is our prior concern.</p>
 
-				</div>
+		</div>
+		<form method="post" action="pgRedirect.php">
+			
 
 				<input hidden id="ORDER_ID" tabindex="1" maxlength="20" size="20" name="ORDER_ID" autocomplete="off"
 					value="<?php echo $ORDERID; ?>">
 
-					
-					<input hidden id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off"
-					value="<?php echo $mememail; ?>"></td>
-					
-					
-					<div hidden class="form-group">
-						<label>INDUSTRY_TYPE_ID ::*</label>
-						<input id="INDUSTRY_TYPE_ID" class="form-control" tabindex="4" maxlength="12" size="12"
-						name="INDUSTRY_TYPE_ID" autocomplete="off" value="Retail"></td>
-					</div>
-					
-					<div hidden class="form-group">
-						<label>Channel ()::*</label>
-						<input id="CHANNEL_ID" tabindex="4" class="form-control" maxlength="12" size="12" name="CHANNEL_ID"
-						autocomplete="off" value="WEB">
-					</div>
-					
-					<div class="form-group col-4">
-						<label for="amountl">Session Fee *</label>
-						<div class="d-flex justify-content-center"> 
-						<input title="TXN_AMOUNT" id="amount" class="form-control" tabindex="10" type="text" name="TXN_AMOUNT" value="<?php echo $amount; ?>" readonly>
-					</div>
 
-					<div class="form-group text-center">
-						<input value="CheckOut" class="btn btn-success my-5" type="submit" onclick="">
-					</div>
+				<input hidden id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off"
+					value="<?php echo $mememail; ?>"></td>
+
+
+				<div hidden class="form-group">
+					<label>INDUSTRY_TYPE_ID ::*</label>
+					<input id="INDUSTRY_TYPE_ID" class="form-control" tabindex="4" maxlength="12" size="12"
+						name="INDUSTRY_TYPE_ID" autocomplete="off" value="Retail"></td>
 				</div>
-				* - Mandatory Fields
+
+				<div hidden class="form-group">
+					<label>Channel ()::*</label>
+					<input id="CHANNEL_ID" tabindex="4" class="form-control" maxlength="12" size="12" name="CHANNEL_ID"
+						autocomplete="off" value="WEB">
+				</div>
+
+				<div class="form-group">
+					<label for="amountl">Session Fee *</label>
+					<input title="TXN_AMOUNT" id="amount" class="form-control" tabindex="10" type="text"
+						name="TXN_AMOUNT" value="<?php echo $amount; ?>" readonly>
+				</div>
+
+				<div class="form-group text-center">
+					<input value="CheckOut" class="btn px-5 btn-success my-5" type="submit" onclick="">
+				</div>
+			
+
 		</form>
 
 	</section>
+
+
+
+
 	<?php
         require 'partials/_footer.php';
         ?>

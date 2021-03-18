@@ -45,6 +45,21 @@ session_start();
   </div>
   <!-- Carousel End  -->
 
+  <!-- paragraph -->
+
+  <section class="container mt-5 intro-para">
+    <div>
+     
+      <p class="lead">The Yoga Institute, Bandara (West), Mumbai, India was founded in 1950.
+      We believed that yoga was not meant exclusively for bearded men living in the mountains, and we wanted to bring it to householders—the men and women who have to work, toil, commute, earn a living, raise children, and fight the battle of life everyday. 
+      We wanted to bring it to people living in the town and the city, because We believed that the householder could benefit immensely from this knowledge. </p>
+
+      <p></p>
+    </div>
+  </section>
+
+  <!-- pragraph end -->
+
 
   
 
