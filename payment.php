@@ -1,14 +1,30 @@
 <?php
 session_start();
+include 'partials/_dbconnect.php';
 $_SESSION['sessType'] = $_POST['sessionBooking'];
 $mememail = $_SESSION['user'];
+$memname = $_SESSION['name'];
+$memphone = $_SESSION['phone'];
+
+$ORDERID = 'ORDS' . rand(10000,99999999);
 
 if ($_POST['sessionBooking'] == 'sessionBooking1')
 {
 	$amount= 1500;
+
+	$expiry = date("Y-m-d", strtotime("+1 Months"));
+	$query1 = "INSERT INTO `sessionbooking` (`o_id`, `name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$ORDERID', '$memname', '$memphone', '$mememail', '$amount', current_timestamp(), '$expiry', '1', '0', 'pending', 'online')";
+
+	mysqli_query($conn, $query1);
+
 }
 elseif ($_POST['sessionBooking'] == 'sessionBooking2'){
 	$amount= 2500;
+
+	$expiry = date("Y-m-d", strtotime("+1 Months"));
+	$query1 = "INSERT INTO `sessionbooking` (`o_id`, `name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$ORDERID', '$memname', '$memphone', '$mememail', '$amount', current_timestamp(), '$expiry', '0', '1', 'pending', 'online')";
+
+	mysqli_query($conn, $query1);
 }else{
 	$amount = 00;
 }
@@ -45,7 +61,7 @@ elseif ($_POST['sessionBooking'] == 'sessionBooking2'){
 				</div>
 
 				<input hidden id="ORDER_ID" tabindex="1" maxlength="20" size="20" name="ORDER_ID" autocomplete="off"
-					value="<?php echo  'ORDS' . rand(10000,99999999)?>">
+					value="<?php echo $ORDERID; ?>">
 
 					
 					<input hidden id="CUST_ID" tabindex="2" maxlength="12" size="12" name="CUST_ID" autocomplete="off"
