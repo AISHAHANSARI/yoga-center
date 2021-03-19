@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="../fancybox/jquery.fancybox.min.css">
 
 	<!-- stylesheet file-->
-	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="../css/style.css"> -->
 
 	<!-- jquery library -->
 	<!-- <script src="js/jquery.min.js"></script> -->
@@ -27,7 +27,7 @@
    <div class="container"> 
 <?php
 // Start session
-session_start();
+// session_start();
 
 $postData = $imgData = array();
 

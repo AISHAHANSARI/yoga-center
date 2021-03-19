@@ -51,7 +51,9 @@
 
 <!-- Bootstrap CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-<link rel="stylesheet" href="css/style.css">
+
+<!-- Custom Css  -->
+<link rel="stylesheet" href="../css/style.css">
 
 <!-- Bootstrap css end  -->
 
@@ -68,16 +70,16 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="index.php">Gallery</a>
+          <a class="nav-link active" aria-current="page" href="manage.php">Gallery</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="classes.php">Member</a>
+          <a class="nav-link active" aria-current="page" href="">Member</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="dgallery.php">Session Booking</a>
+          <a class="nav-link active" aria-current="page" href="">Session Booking</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="contact.php">Detail Information</a>
+          <a class="nav-link active" aria-current="page" href="">Detail Information</a>
         </li>
         </ul>
         <ul class="navbar-nav navbar-right me-md-3">

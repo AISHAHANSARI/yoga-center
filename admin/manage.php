@@ -30,7 +30,7 @@
     <div class="container">
 <?php
 // Start session
-session_start();
+// session_start();
 
 // Include and initialize DB class
 require_once 'DB.class.php';

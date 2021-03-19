@@ -9,7 +9,7 @@ $db = new DB();
 $tblName = 'images';
 
 // File upload path
-$uploadDir = "uploads/images/";
+$uploadDir = "../uploads/images/";
 
 // Allow file formats
 $allowTypes = array('jpg','png','jpeg','gif');
