@@ -4,8 +4,34 @@ $insert = false;
 
 include "partials/_dbconnect.php";
 
+ if(isset($_GET["delete"])){
+   $sr_no = $_GET['delete'];
+  //  echo $sr_no;
+
+   $sql = "DELETE FROM `contact` WHERE `contact`.`sr_no` = $sr_no";
+   $result = mysqli_query($conn, $sql);
+
+ }
 
  if ($_SERVER["REQUEST_METHOD"] == "POST"){
+   if(isset($_POST["sr_noEdit"])){
+    //update the record 
+    $sr_no = $_POST["sr_noEdit"];
+    $name = $_POST["nameEdit"];
+    $phone_no = $_POST["phone_noEdit"];
+    $message = $_POST["messageEdit"];
+   
+   $sql = "UPDATE `contact` SET `name` = '$name' , `phone_no` = '$phone_no',`msg` = '$message' WHERE `contact`.`sr_no` = $sr_no";
+
+
+
+  //  UPDATE `contact` SET `name` = 'shadab1', `phone_no` = '9987654091', `msg` = 'gfwtdfgcdghadgacd1' WHERE `contact`.`sr_no` = 1;
+   $result = mysqli_query($conn, $sql);
+   }
+   else
+   {
+
+   
      $name = $_POST["name"];
      $phone_no = $_POST["phone_no"];
      $message = $_POST["msg"];
@@ -17,6 +43,7 @@ include "partials/_dbconnect.php";
         if($result){
             $insert = true;
         }
+ }
  }
 ?>
 
@@ -75,7 +102,7 @@ include "partials/_dbconnect.php";
 
 <div class = "form-group mb-3">
 
-<input type="submit" text ="Update Record" class = " btn btn-success" id = "btn-submit">
+<button type="submit" text ="" class = " btn btn-success" id = "btn-submit">Update Record</button>
 </div>
 </form>
 
@@ -104,7 +131,7 @@ include "partials/_dbconnect.php";
 <section class="container col-6">
 <div>
 <h1> Add a record</h1>
-<form method = "post">
+<form action = "member.php" method = "post">
 <div class="mb-3">
   <label for="name" class="form-label">Name</label>
   <input type="text"  name ="name" class="form-control" id="name" >
@@ -122,7 +149,7 @@ include "partials/_dbconnect.php";
 
 <div class = "form-group mb-3">
 
-<input type="submit" text ="Submit" class = " btn btn-success" id = "btn-submit">
+<button type="submit" class = " btn btn-success" id = "btn-submit">Add Record</button>
 </div>
 </form>
 </div>
@@ -197,8 +224,31 @@ $(document).ready( function () {
         messageEdit.value = message;
         sr_noEdit.value = e.target.id;
         console.log(e.target.id)
-        $('#editModal').modal('toggle');
+
+        var myModal = new bootstrap.Modal(document.getElementById('editModal'), {
+  keyboard: false
+})
+        // $('#editModal').modal('toggle');
+        myModal.toggle()
       })
     })
+
+    deletes = document.getElementsByClassName('delete');
+    Array.from(deletes).forEach((element) => {
+      element.addEventListener("click", (e) => {
+        console.log("edit ");
+        sr_no = e.target.id.substr(1);
+
+        if (confirm("Are you sure you want to delete this note!")) {
+          console.log("yes");
+          window.location = `member.php?delete=${sr_no}`;
+          // TODO: Create a form and use post request to submit a form
+        }
+        else {
+          console.log("no");
+        }
+      })
+    })
+    </script>
 </body>
 </html>
