@@ -73,7 +73,7 @@
           <a class="nav-link active" aria-current="page" href="manage.php">Gallery</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="">Member</a>
+          <a class="nav-link active" aria-current="page" href="member.php">Member</a>
         </li>
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="">Session Booking</a>

@@ -47,9 +47,9 @@ session_start();
 
   <!-- paragraph -->
 
-  <section class="container mt-5 intro-para">
+  <section class="container mt-5 intro-para text-center">
     <div>
-     
+     <h2 class="mb-3 title">Antara Yoga Center</h2>
       <p class="lead">The Yoga Institute, Bandara (West), Mumbai, India was founded in 1950.
       We believed that yoga was not meant exclusively for bearded men living in the mountains, and we wanted to bring it to householders—the men and women who have to work, toil, commute, earn a living, raise children, and fight the battle of life everyday. 
       We wanted to bring it to people living in the town and the city, because We believed that the householder could benefit immensely from this knowledge. </p>
@@ -69,6 +69,7 @@ session_start();
 <div class="container py-5">
   <div id="carouselreview" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner text-center">
+    <h2 class="mb-3 title">Customer's Satisfaction</h2>
 
     
 
@@ -90,10 +91,10 @@ if($result = mysqli_query($conn, $query))
        echo  '<img src="img/Aishah_Ansari.jpg" alt=""
           class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="60" height="60">';
         
-        echo '<h4><p class="d-block w-100">' . $row['name'] . "</p></h4>";
+        echo '<h5 class="m-2 d-block w-100">' . $row["name"] . '</h5>';
         
         // echo '<p class="d-block w-100">' . $row['email'] . "</p>";
-        echo '<p class="d-block w-100">' . $row['reviews'] . "</p>";
+        echo '<p class="d-block w-100"><i>" ' . $row["reviews"] .' "</i></p>';
         
         echo '</div>';        
       }
@@ -103,9 +104,9 @@ if($result = mysqli_query($conn, $query))
         echo  '<img src="img/Aishah_Ansari.jpg" alt=""
           class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="60" height="60">';
         
-        echo '<h4><p class="d-block w-100">' . $row['name'] . "</p></h4>";
+        echo '<h5 class=" m-2 d-block w-100">' . $row["name"] . '</h5>';
         // echo '<p class="d-block w-100">' . $row['email'] . "</p>";
-        echo '<p class="d-block w-100">' . $row['reviews'] . "</p>";
+        echo '<p class="d-block w-100"><i>" ' . $row["reviews"] . ' "</i></p>';
         
         echo '</div>';
         // <img src="img/pose.jpg" class="d-block w-100" alt="...">

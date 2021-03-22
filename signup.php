@@ -6,8 +6,8 @@ if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
 $showAlert = false;
 include "partials/_dbconnect.php";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-  if(isset($_POST['review-submit']) ){
-    if((isset($_POST['name']) && !empty($_POST['name'])) && (isset($_POST['phone_no']) && !empty($_POST['phone_no'])) && (isset($_POST['email']) && !empty($_POST['email']))&& (isset($_POST['dob']) && !empty($_POST['dob']))&& (isset($_POST['gender']) && !empty($_POST['gender']))&& (isset($_POST['password']) && !empty($_POST['password']))&& (isset($_POST['cpassword']) && !empty($_POST['cpassword'])))
+  if(isset($_POST['register-submit']) ){
+    if((isset($_POST['name']) && !empty($_POST['name'])) && (isset($_POST['phone_no']) && !empty($_POST['phone_no'])) && (isset($_POST['email']) && !empty($_POST['email']))&& (isset($_POST['dob']) && !empty($_POST['dob']))&& (isset($_POST['gender']) && !empty($_POST['gender']))&& (isset($_POST['password']) && !empty($_POST['password']))&& (isset($_POST['cpassword']) && !empty($_POST['cpassword']))&& (isset($_POST['quest1']) && !empty($_POST['quest1']))&& (isset($_POST['quest2']) && !empty($_POST['quest2']))&& (isset($_POST['quest3']) && !empty($_POST['quest3'])))
   {
   $name = mysqli_real_escape_string($conn, $_POST['name']);
   $email = mysqli_real_escape_string($conn, $_POST['email']);
@@ -16,9 +16,13 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
   $gender = mysqli_real_escape_string($conn, $_POST['gender']);
   $password = mysqli_real_escape_string($conn, $_POST['password']);
   $cpassword= mysqli_real_escape_string($conn, $_POST['cpassword']);
+  $quest1= mysqli_real_escape_string($conn, $_POST['quest1']);
+  $quest2= mysqli_real_escape_string($conn, $_POST['quest2']);
+  $quest3= mysqli_real_escape_string($conn, $_POST['quest3']);
+  
   
   if($password == $cpassword){
-    $msgquery = "INSERT INTO `member` (`email`, `phone_no`, `name`, `dob`, `gender`, `password`,  `date`) VALUES ('$email', '$phone', '$name', '$dob', '$gender', '$password',  current_timestamp())";
+    $msgquery = "INSERT INTO `member` (`email`, `phone_no`, `name`, `dob`, `gender`, `password`, `date` , `quest1` , `quest2` , `quest3` ) VALUES ('$email', '$phone', '$name', '$dob', '$gender', '$password',  current_timestamp(), '$quest1' , '$quest2' , '$quest3')";
     $result = mysqli_query($conn, $msgquery);
     if ($result){
       $showAlert=true;
@@ -98,7 +102,22 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
           <input type="password" class="form-control" id="cpassword" name="cpassword">
         </div>
 
-        <button type="submit" name="review-submit" class="btn btn-primary">Sign Up</button>
+        <div>
+          <label for="quest1" class="form-label">What Is Your School Name?</label>
+          <input type="text" class="form-control" id="quest1" name="quest1">
+        </div>
+
+        <div>
+          <label for="quest2" class="form-label">What Is Your Father Name?</label>
+          <input type="text" class="form-control" id="quest2" name="quest2">
+        </div>
+
+        <div>
+          <label for="quest3" class="form-label">What Is Your Pet Name?</label>
+          <input type="text" class="form-control" id="quest3" name="quest3">
+        </div>
+
+        <button type="submit" name="register-submit" class="btn btn-primary">Sign Up</button>
       </form>
     </div>
   </section>

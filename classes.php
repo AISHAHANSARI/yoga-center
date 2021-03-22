@@ -41,84 +41,233 @@ if ($result){
         require 'partials/_header.php';
         ?>
 
-<section class="container my-5 position-relative">
-  <div class="row">
-    <div class="quotes col-6 my-5">
+  <section class="container mt-5 position-relative">
+    <div class="row">
+      <div class="quotes col-6 mt-5">
 
-  
-      <h4><p>“Yoga is a light, which once lit will never dim. The better your practice, the brighter your flame.”</p></h4>
-    </div>
 
-    
-    <div class="col-md-4 end-0 container position-relative  my-3 px-5 float-right">
-      <div class="card" style="width: 25rem;">
-        <!-- <img src="img/pose2.jpg" class="card-img-top" alt="..."> -->
+        <h4>
+          <p>“Yoga is a light, which once lit will never dim. The better your practice, the brighter your flame.”</p>
+        </h4>
+      </div>
 
-        <div class="card-body text-center">
-          <h5 class="card-title"><b>You're Logged In as:</b>
-           </h5>
-          <p class="card-title"><b>Name : </b>  <?php echo $membername; ?>
-          </p>
-          
-          <p class="card-text"><b>Email : </b>
-            <?php echo $memberemail; ?></p>
-      
-        </div>
-        <!-- <div class="text-center mb-3">
+
+      <div class="col-md-4 end-0 container position-relative  my-3 px-5 float-right">
+        <div class="card" style="width: 25rem;">
+          <!-- <img src="img/pose2.jpg" class="card-img-top" alt="..."> -->
+
+          <div class="card-body text-center">
+            <h5 class="card-title"><b>You're Logged In as:</b>
+            </h5>
+            <p class="card-title"><b>Name : </b>
+              <?php echo $membername; ?>
+            </p>
+
+            <p class="card-text"><b>Email : </b>
+              <?php echo $memberemail; ?>
+            </p>
+
+          </div>
+          <!-- <div class="text-center mb-3">
           <button class="btn btn-primary">Sign Out</button>
         </div> -->
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
+  <?php
+  $booked = false;
+  if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
+  
+  $sessSql = "SELECT * FROM `sessionbooking` WHERE `email` = '$memberemail'";
+  $sessionresult = mysqli_query($conn, $sessSql);
+  
+  $sessrow = mysqli_fetch_array($sessionresult);
+  $sessnum = mysqli_num_rows($sessionresult);
+  if($sessnum >=1){
+    $booked = true;
+  } } ?>
+  
+  <!-- users course (if logged in)-->
+
+
+  <?php
+   if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
+
+    if ($booked){
+        $session1 = false;
+        $session2 = false;
+
+        $sessionQuery = "SELECT * FROM `sessionbooking` WHERE `email` = '$memberemail'";
+        $bookresult = mysqli_query($conn, $sessionQuery);
+        $bookrow = mysqli_fetch_assoc($bookresult);
+        $book1 = $bookrow['session1'];
+        $book2 = $bookrow['session2'];
+        $bookpay = $bookrow['paystatus'];
+        // $bookexpiry = $bookrow[];
+        if (($book1 == 1) && ($bookpay=="success")){
+          $session1 = true;
+          $session2 = false;
+
+        }elseif(($book2 == 1 && ($bookpay=="success")) ){
+          $session2 = true;
+          $session1 = false;
+        }else{
+          $booked = false;
+        }
+
+//agar epiry date aaj se match karta hai to book1 aur book2 false
+
+
+  ?>
+
+
+
+
+
+
+<!-- Session 1 -->
+
+<?php if($session1){ ?>
+  <section class="container text-center mt-3">
+      <h2 class="title">Your Booked Course</h2>
+      
+    <div class="d-flex justify-content-center">
+
+      <div class="row text-center ">
+
+
+
+        <div class="col-lg-6 text-center my-3 px-5">
+          <div class="card" style="width: 25rem;">
+            <img src="img/pose2.jpg" class="card-img-top" alt="...">
+
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-6 text-center my-3 px-5">
+          <div class="card" style="width: 25rem;">
+            <!-- <img src="img/pose2.jpg" class="card-img-top" alt="..."> -->
+
+            <div class="card-body">
+              <h5 class="card-title text-center"><b>3 DAYS IN A WEEK</b></h5>
+              <p class="card-text text-center">Mon-Wed-Fri<br>
+                Time: 9:00 AM to 12:00 noon<br> 1 Month Course.</p>
+
+                <h6>Expiry Date:</h6>
+
+             
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+<?php }
+elseif($session2){
+  ?>
+    <!-- Session 2 -->
+    <section class="container text-center mt-3">
+    <h2 class="title">Your Booked Course</h2>
+    <div class="d-flex justify-content-center">
+
+
+      <div class="row text-center ">
+
+        <div class="col-lg-6 text-center my-3 px-5">
+          <div class="card" style="width: 25rem;">
+            <img src="img/pose.jpg" class="card-img-top" alt="...">
+
+          </div>
+        </div>
+
+
+
+        <div class="col-lg-6 text-center my-3 px-5">
+          <div class="card" style="width: 25rem;">
+
+            <div class="card-body">
+              <h5 class="card-title text-center"><b>6 DAYS IN A WEEK</b></h5>
+              <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
+                Time: 9:00 AM to 12:00 noon<br> 1 Month Course.</p>
+
+              <h6>Expiry Date:</h6>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+<?php }
+?>
+
+
+
+
+
+  </section>
+  <?php }
+}
+ if($session1 == false && $session2 == false){ ?>
   <!-- Session Booking  -->
 
-  <section class="container mt-5 text-center">
+  <section class="container mt-3 text-center">
+    <h2 class="title">Courses Available</h2>
     <div class="d-flex justify-content-center">
-    <div class="row text-center ">
 
-      
 
-      <div class="col-lg-6 text-center my-3 px-5">
-        <div class="card" style="width: 25rem;">
-          <img src="img/pose2.jpg" class="card-img-top" alt="...">
+      <div class="row text-center ">
 
-          <div class="card-body">
-            <h5 class="card-title text-center"><b>3 DAYS IN A WEEK</b></h5>
-            <p class="card-text text-center">Mon-Wed-Fri<br>
-              Time: 9:00 AM to 12:00 noon</p>
-        
+
+
+        <div class="col-lg-6 text-center my-3 px-5">
+          <div class="card" style="width: 25rem;">
+            <img src="img/pose2.jpg" class="card-img-top" alt="...">
+
+            <div class="card-body">
+              <h5 class="card-title text-center"><b>3 DAYS IN A WEEK</b></h5>
+              <p class="card-text text-center">Mon-Wed-Fri<br>
+                Time: 9:00 AM to 12:00 noon<br> 1 Month Course.</p>
+
               <form action="payment.php" method="post">
-            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking1" value="sessionBooking1" checked>
-            <label class="form-check-label" for="sessionBooking1">
-              <b>₹ : 1500.00</b>
-            </label>
+                <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking1"
+                  value="sessionBooking1" checked>
+                <label class="form-check-label" for="sessionBooking1">
+                  <b>₹ : 1500.00</b>
+                </label>
+            </div>
           </div>
+
         </div>
 
-      </div>
+        <div class="col-lg-6 text-center my-3 px-5">
+          <div class="card" style="width: 25rem;">
+            <img src="img/pose.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title text-center"><b>6 DAYS IN A WEEK</b></h5>
+              <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
+                Time: 9:00 AM to 12:00 noon<br> 1 Month Course.</p>
 
-      <div class="col-lg-6 text-center my-3 px-5">
-        <div class="card" style="width: 25rem;">
-          <img src="img/pose.jpg" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title text-center"><b>6 DAYS IN A WEEK</b></h5>
-            <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
-              Time: 9:00 AM to 12:00 noon</p>
-            
-            <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking2" value="sessionBooking2">
-            <label class="form-check-label" for="sessionBooking2">
-              <b>₹ : 2500.00</b>
-            </label>
+              <input class="form-check-input" type="radio" name="sessionBooking" id="sessionBooking2"
+                value="sessionBooking2">
+              <label class="form-check-label" for="sessionBooking2">
+                <b>₹ : 2500.00</b>
+              </label>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  
 
-    
+
+
 
 
     <?php
@@ -131,9 +280,13 @@ if ($result){
               echo '<button type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal" class="my-3 p-2 col-3 btn btn-primary">Book Now</button>';
             }
         ?>
-  </form>
+    </form>
 
   </section>
+
+<?php }
+?>
+
 
 
   <!-- Review Section  -->
@@ -170,7 +323,7 @@ if ($result){
           </div>
           <button type="submit" name="review-submit" class="btn btn-primary">Submit</button>
 
-          
+
         </form>
 
       </div>
