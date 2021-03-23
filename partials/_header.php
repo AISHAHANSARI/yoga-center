@@ -132,12 +132,9 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
       <label for="password" class="form-label">Password</label>
       <input type="password" class="form-control" id="password" name="password">
     </div>
-    <p class="text-center">New Member? <a href="signup.php"> Sign Up</a></p>
     
-
-
-
-
+    <p class="text-center">New Member? <a href="signup.php"> Sign Up</a></p>
+    <button class="" type="button">Forget Password?</button>
 
       </div>
       <div class="modal-footer">

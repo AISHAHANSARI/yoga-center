@@ -39,11 +39,11 @@
 <section class="container my-3">
   <div class="row">
 
-  <div class="col-6">
+  <div class="col-md-6">
     <h1> Reach Us </h1>
   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7505567443413!2d72.83201304966998!3d19.074701856908614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c90e6740a08b%3A0x17eb1ecd5461f9d3!2sLinking%20Rd%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1614612516663!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
   </div>
-    <div class="col-6">
+    <div class="col-md-6">
     <!-- <div id="sent"> -->
           <?php
         if($showAlert){

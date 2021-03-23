@@ -1,6 +1,9 @@
 <?php
 session_start();
 
+$session1 = false;
+ $session2 = false;
+
 $membername = "None, Please Sign In!";
 $memberemail = "None, Please Sign In!";
 if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
@@ -96,16 +99,25 @@ if ($result){
    if (isset($_SESSION['user']) && ($_SESSION['LoggedIn'] == true)){
 
     if ($booked){
-        $session1 = false;
-        $session2 = false;
+        
 
-        $sessionQuery = "SELECT * FROM `sessionbooking` WHERE `email` = '$memberemail'";
+        $sessionQuery = "SELECT * FROM `sessionbooking` WHERE `email` = '$memberemail' and `paystatus` = 'success' ";
         $bookresult = mysqli_query($conn, $sessionQuery);
         $bookrow = mysqli_fetch_assoc($bookresult);
+
+        $book_oid = $bookrow['o_id'];
+        $book_amt = $bookrow['amount'];
+        $bookeddate = $bookrow['bookdate'];
         $book1 = $bookrow['session1'];
         $book2 = $bookrow['session2'];
         $bookpay = $bookrow['paystatus'];
-        // $bookexpiry = $bookrow[];
+        $book_paymode = $bookrow['paymode'];
+
+
+        $bookexpiry = $bookrow['expirydate'];
+        $todaydate = date("Y-m-d");
+
+
         if (($book1 == 1) && ($bookpay=="success")){
           $session1 = true;
           $session2 = false;
@@ -117,7 +129,19 @@ if ($result){
           $booked = false;
         }
 
-//agar epiry date aaj se match karta hai to book1 aur book2 false
+//agar epiry date aaj se match karta hai to session1 aur session2 false
+
+          if($bookexpiry <= $todaydate){
+            $session1 = false;
+            $session2 = false;
+            
+            
+            $memberphone = $_SESSION['phone'];
+            $expinsert = "INSERT INTO `expiredbookedsession` (`o_id`, `name`, `phone_no`, `email`, `amount`, `bookdate`, `expirydate`, `session1`, `session2`, `paystatus`, `paymode`) VALUES ('$book_oid', '$membername', '$memberphone', '$memberemail', '$book_amt', '$bookeddate', '$bookexpiry', '$book1', '$book2', '$bookpay', '$book_paymode')";
+            $expdelete = "DELETE FROM `sessionbooking` WHERE `sessionbooking`.`email` = '$memberemail' and `sessionbooking`.`paystatus` = 'success' ";
+            mysqli_query($conn, $expinsert);
+            mysqli_query($conn, $expdelete);
+          }
 
 
   ?>
@@ -157,7 +181,8 @@ if ($result){
               <p class="card-text text-center">Mon-Wed-Fri<br>
                 Time: 9:00 AM to 12:00 noon<br> 1 Month Course.</p>
 
-                <h6>Expiry Date:</h6>
+                <h6>Expiry Date : <?php echo $bookexpiry ?></h6>
+                <!-- <h6>Today Date : <?php echo $todaydate ?></h6> -->
 
              
             </div>
@@ -195,7 +220,7 @@ elseif($session2){
               <p class="card-text text-center">Mon-Tue-Wed-Thu-Fri-Sat<br>
                 Time: 9:00 AM to 12:00 noon<br> 1 Month Course.</p>
 
-              <h6>Expiry Date:</h6>
+                <h6>Expiry Date : <?php echo $bookexpiry ?></h6>
             </div>
           </div>
 
@@ -209,13 +234,50 @@ elseif($session2){
 ?>
 
 
+ <!-- Video Section -->
 
+ <?php 
+ if(($session1 == true || $session2 == true) && ($booked==true)){ 
+   ?>
+<section class="container">
+		<h2 class="title">Practice Videos</h2>
+		<div class=" mt-3">
+			<div class="row">
+				<?php
+				include "partials/_dbconnect.php";
+					
+				$q = "SELECT * FROM video";
+
+				$query = mysqli_query($conn,$q);
+				
+				while($row=mysqli_fetch_array($query)) { 
+          $ftitle = $row['title'];
+					$name = $row['name'];
+					?>
+
+				<div class="col-md-4 p-2">
+          <video width="100%" controls>
+            <source src="<?php echo 'admin/upload/'.$name;?>">
+					</video>
+          <h5 class="title"><?php echo $ftitle;?></h5>
+				</div>
+
+				<?php }
+?>
+			</div>
+		</div>
+	</section>
+<?php
+ }
+ ?>
+
+ <!-- Video end  -->
 
 
   </section>
   <?php }
 }
- if($session1 == false && $session2 == false){ ?>
+ if(($session1 == false && $session2 == false) || ($booked == false)){ ?>
   <!-- Session Booking  -->
 
   <section class="container mt-3 text-center">

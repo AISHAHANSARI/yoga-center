@@ -63,12 +63,12 @@ $images = $db -> getRows('images', $condition);
 								$imageURL = $uploadDir.$row["file_name"];
 								
                                 ?>
-			<div class="col-lg-3">
-				<a href="<?php echo $imageURL; ?>" data-fancybox="gallery" data-caption="<?php echo $row["title"];?>">
+			<div class="col-md-3 text-center">
+				<a  href="<?php echo $imageURL; ?>" data-fancybox="gallery" data-caption="<?php echo $row["title"];?>">
 					<img src="<?php echo $imageURL;?> " alt="" />
-					<p><?php echo $row["title"];?></p>
-
 				</a>
+				<p><?php echo $row["title"];?></p>
+
 			</div>
 			<?php }
            }?>
