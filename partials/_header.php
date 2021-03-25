@@ -134,7 +134,7 @@ if($_SERVER['REQUEST_METHOD'] == "GET"){
     </div>
     
     <p class="text-center">New Member? <a href="signup.php"> Sign Up</a></p>
-    <button class="" type="button">Forget Password?</button>
+    <p class="text-center">Need help? <a href="forget.php">Forget Password?</a></p>
 
       </div>
       <div class="modal-footer">

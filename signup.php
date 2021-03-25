@@ -58,7 +58,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
       <?php
         if($showAlert){
           echo ' <div class="alert alert-success" role="alert">
-          Thanks For Your Review!
+          You have been registered successfully please sign in!
           </div> '; 
         }
         ?>

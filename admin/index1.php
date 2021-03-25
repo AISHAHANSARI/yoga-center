@@ -11,19 +11,7 @@
 
 	<section class="container">
 		<h1><b>Practice Videos</b></h1>
-		<div class="d-flex justify-align-center mt-3">
-
-			<!-- if($result = mysqli_query($conn, $query))
-{
-  if(mysqli_num_rows($result) > 0)
-	{
-    
-    
-    
-    while($row = mysqli_fetch_array($result)){
-      
-      if ($row['sr_no'] == 1){ -->
-
+		<div class="d-flex justify-align-center mt-3"
 			<div class="row">
 				<?php
 				include "partials/_dbconnect.php";
