@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php 
+session_start();
+if( ( (!isset($_SESSION['adminEmail'])) || (!isset($_SESSION['master'])) ) && (!isset($_SESION['adminLogged'])) ) {
+  header("location: admin.php");
+  
+}
+?><!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
